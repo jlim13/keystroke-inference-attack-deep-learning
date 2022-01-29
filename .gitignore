@@ -1,0 +1,13 @@
+*.pyc
+*.pth
+data/
+domain_invariant_net/
+__pycache__/
+weights/
+sentence_outputs/
+viz_plots/
+metrics/
+vid2vid/
+tsne_plots/
+*.txt
+*.sh
