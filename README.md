@@ -1,7 +1,4 @@
 # disentangled_vids
 
-## data is in data/ 
-
-##finetuning results -> finetune.py
-##ADDA results -> adda.py
+## download data from https://drive.google.com/drive/u/0/folders/1Cue1lhY_X-otYjiB0cT8LNS_8vXpfmPF
 

@@ -691,52 +691,22 @@ class CNN_Transformer_Encoder(nn.Module):
         return enc_src, src
 
 
-class FiLM(nn.Module):
+class Aggregate(nn.Module):
     def __init__(self, timesteps = 300, hid_dim = 256, dropout = 0.2 ):
-        super(FiLM, self).__init__()
+        super(Aggregate, self).__init__()
 
         self.timesteps = timesteps
         self.hid_dim = hid_dim
-
         self.joint_norm = torch.nn.LayerNorm(256)
 
 
 
 
-    def forward(self, input ):
+    def forward(self, input):
 
         style = input[0]
         content = input[1]
-
-        content_trans = content + style
-        # content_trans = self.joint_norm(content_trans)
+        content_trans = style + content
+        content_trans = self.joint_norm(content_trans)
 
         return content_trans
-
-
-
-class Recon(nn.Module):
-    def __init__(self):
-        super(Recon, self).__init__()
-
-        self.rnn = nn.RNN(256, 128, batch_first = True)
-
-
-    def forward(self, x):
-
-        out, _ = self.rnn(x)
-
-        return out
-
-class Frame_Discrim(nn.Module):
-    def __init__(self):
-        super (Frame_Discrim, self).__init__()
-
-        self.linear = nn.Linear(128, 1)
-
-    def forward(self, x):
-
-        out = self.linear(x)
-        out = out.squeeze(1)
-
-        return x
